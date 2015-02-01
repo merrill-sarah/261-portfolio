@@ -18,6 +18,7 @@
                 lastName:"Fitzgerald",
                 age:2,
                 breed:"Snowshoe",
+                weight:"10 pounds",
                 fullName: function(c) {
                     return this.firstName + " " + this.lastName;
                 }
