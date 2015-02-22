@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Team Meetings Lesson 03</title>
+        <title>Team Meetings Lesson 06</title>
         <meta charset="UTF-8">
     </head>
     <body>
