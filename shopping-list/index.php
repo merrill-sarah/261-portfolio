@@ -3,38 +3,50 @@
     <head>
         <title>Shopping List</title>
         <link href="stylesheet.css" type="text/css" rel="stylesheet" />
+        
+        <script>
+            function testFunction(){
+                document.getElementById("header").css("background-color", "pink");
+            }
+            
+            function changeColor(color){
+                document.getElementByClass("themecolor").css("background-color", color);
+            }        
+        </script>
     </head>
     <body>
-        <header>
-            
+        <header class="themecolor" id="header">
+            <h1>Shopping List</h1>
         </header>
         <main>
             <table>
                 <tr>
-                    <td>Star</td>
-                    <td>Item 1</td>
-                    <td>Qty.</td>
-                    <td><input type="checkbox" name="check" value="item1"></td>
+                    <td>List 1</td>
+                    <td>></td>
                 </tr>
                 <tr>
-                    <td>Star</td>
-                    <td>Item 2</td>
-                    <td>Qty.</td>
-                    <td><input type="checkbox" name="check" value="item2"></td>
+                    <td>List 2</td>
+                    <td>></td>
                 </tr>
                 <tr>
-                    <td>Star</td>
-                    <td>Item 3</td>
-                    <td>Qty.</td>
-                    <td><input type="checkbox" name="check" value="item3"></td>
-                </tr>
-                <tr>
-                    <td>Star</td>
-                    <td>Item 4</td>
-                    <td>Qty.</td>
-                    <td><input type="checkbox" name="check" value="item4"></td>
+                    <td>List 3</td>
+                    <td>></td>
                 </tr>
             </table>
+            <div class="popup">
+                
+            </div>
+            <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+            <script src="general.js"></script>
         </main>
+        <footer class="themecolor">
+            <nav>
+                <ul>
+                    <li id="add"><a href="add-list">Add</a></li>
+                    <li id="options"><a href="options">Options</a></li>
+                    <li id="delete"><a href="delete-list">Delete</a></li>
+                </ul>
+            </nav>
+        </footer>
     </body>
 </html>
