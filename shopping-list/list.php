@@ -4,60 +4,26 @@
         <title>Shopping List</title>
         <link href="stylesheet.css" type="text/css" rel="stylesheet" />
         
-        <script>
-            function testFunction(){
-                document.getElementById("header").css("background-color", "pink");
-            }
-            
-            function changeColor(color){
-                document.getElementByClass("themecolor").css("background-color", color);
-            }        
-        </script>
+        <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script src="general.js"></script>
     </head>
-    <body>
+    <body  onload="doShowAll()">
         <header class="themecolor" id="header">
-            <a href="index.php" id="home">Home</a>
-            <h1>List Name</h1>
+            <a href="index.php" id="home" class="button">Home</a>
+            <h1>Shopping List</h1>
         </header>
         <main>
-            <table>
-                <tr>
-                    <td><img src="images/imp1-small.png" id="imp1" alt="important marker"></td>
-                    <td>Item 1</td>
-                    <td>Qty.</td>
-                    <td><input type="checkbox" name="check" value="item1"></td>
-                </tr>
-                <tr>
-                    <td><img src="images/imp1-small.png" id="imp1" alt="important marker"></td>
-                    <td>Item 2</td>
-                    <td>Qty.</td>
-                    <td><input type="checkbox" name="check" value="item2"></td>
-                </tr>
-                <tr>
-                    <td><img src="images/imp1-small.png" id="imp1" alt="important marker"></td>
-                    <td>Item 3</td>
-                    <td>Qty.</td>
-                    <td><input type="checkbox" name="check" value="item3"></td>
-                </tr>
-                <tr>
-                    <td><img src="images/imp1-small.png" id="imp1" alt="important marker"></td>
-                    <td>Item 4</td>
-                    <td>Qty.</td>
-                    <td><input type="checkbox" name="check" value="item4"></td>
-                </tr>
-            </table>
+            <table id="items_table"></table>
             <div class="popup">
                 
             </div>
-            <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-            <script src="general.js"></script>
         </main>
         <footer class="themecolor">
             <nav>
                 <ul>
-                    <li id="add"><a href="add-item">Add</a></li>
-                    <li id="options"><a href="options">Options</a></li>
-                    <li id="delete"><a href="delete-item">Delete</a></li>
+                    <li id="add"><a href="add-item" class="button">Add</a></li>
+                    <li id="options"><a href="options" class="button">Options</a></li>
+                    <li id="delete"><a href="delete-item" class="button">Delete</a></li>
                 </ul>
             </nav>
         </footer>

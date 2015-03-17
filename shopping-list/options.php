@@ -1,7 +1,7 @@
         
 
 <div id="divoptions" class="themecolor">
-<a href="" class="close">Close</a>
+<a href="" class="close button">Close</a>
 <h2>Options</h2>
 <h3>Sort Items By:</h3>
     <ul id="optsort">

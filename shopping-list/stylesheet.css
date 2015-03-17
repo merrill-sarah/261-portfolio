@@ -1,11 +1,44 @@
+@import url(http://fonts.googleapis.com/css?family=Alegreya+Sans);
+
 body {
     margin:0px;
     padding:0px;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family: Arial, sans-serif;
+    font-family:'Alegreya Sans', Arial, sans-serif;
     padding:0px;
     margin:0px;
+}
+.button {
+    display: block;
+    padding:5px;
+    font-size:11pt;
+    width:50px;
+    font-family:'Alegreya Sans', Arial, sans-serif;
+    text-decoration: none;
+    color:#ffffff;
+    text-align:center;
+    background-color:#232323;
+    -webkit-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.8);
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+}
+.button:active {    
+    /*Shadow*/
+  -webkit-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.8);
+  /*Gradient*/
+  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 }
 
 /*Header*/
@@ -23,18 +56,10 @@ header h1 {
 }
 #home {
     position:fixed;
-    top:2px;
-    left:2px;
-    display: block;
+    top:10px;
+    left:5px;
     z-index:1;
     width:50px;
-    padding:5px;
-    font-family:Arial, sans-serif;
-    font-size:11pt;
-    text-decoration: none;
-    color:#ffffff;
-    text-align:center;
-    border: 1px solid gray;
 }
 
 /*Main content*/
@@ -43,10 +68,6 @@ main{
 }
 
 /*popup menus*/
-.popup {
-    background-color:#000000;
-    color:#ffffff;
-}
 .popup h2 {
     font-size:14pt;
     padding:10px;
@@ -63,26 +84,45 @@ main{
     position:absolute;
     top:2px;
     right:2px;
-    display: block;
     z-index:1;
     width:25px;
-    padding:5px;
-    font-family:Arial, sans-serif;
     font-size:8pt;
-    text-decoration: none;
-    color:#ffffff;
-    text-align:center;
-    border: 1px solid gray;
 }
 
 /*Add item menu*/
-#additemoptions {
+#additemdiv {
     height:100px;
     width:100%;
     position:fixed;
     bottom:40px;
     background-color:#000000;
     color:#ffffff;
+}
+#additemdiv #quantity {
+    float:left;
+}
+#additemdiv a.button {
+    float:left;
+}
+
+/*delete item menu*/
+#dltitemdiv {
+   height:100px;
+    width:100%;
+    position:fixed;
+    bottom:40px;
+    background-color:#000000;
+    color:#ffffff; 
+}
+#dltitem {
+    float:left;
+}
+#dltitemdiv a.button {
+    float:left;
+}
+#clearbutt {
+    clear:both;
+    width:100px;
 }
 
 /*Options menu*/
@@ -155,10 +195,9 @@ footer ul {
     width:100%;
 }
 footer li{
-    width:50px;
+    width:56px;
     padding:5px;
     text-align:center;
-    border: 1px solid gray;
 }
 footer #add {
     float:left;
@@ -167,17 +206,10 @@ footer #options{
     float:left;
     position:absolute;
     left:50%;
-    margin-left:-30px;
+    margin-left:-33px;
 }
 footer #delete {
     float:left;
     position:absolute;
     right:5px;
-}
-footer a {
-    display: block;
-    text-decoration: none;
-    color:#ffffff;
-    font-family: Arial, sans-serif;
-    font-size: 11pt;
 }
