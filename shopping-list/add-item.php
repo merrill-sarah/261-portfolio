@@ -1,4 +1,4 @@
-<div id="additemdiv" class="themecolor">
+<div id="additemdiv" class="themecolor" onload="loadColor()">
     <form name=editor>
         <a href="" class="close button">Close</a>
         <h2>Add Item</h2>

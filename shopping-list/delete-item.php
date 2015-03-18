@@ -1,4 +1,4 @@
-<div id="dltitemdiv" class="themecolor">
+<div id="dltitemdiv" class="themecolor" onload="loadColor()">
     <form name=editor>
         <a href="" class="close button">Close</a>
         <h2>Delete Item</h2>
