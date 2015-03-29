@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-This is my sandbox code for CSS animation
+Sandbox code from KD
 -->
 <html>
     <head>

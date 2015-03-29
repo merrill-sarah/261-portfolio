@@ -1,12 +1,11 @@
 $(document).ready(function(){
     
-    $('#content').load('cats/index.php');
+    $('#content').load('content/index.php');
     
     $('ul#nav li a').click(function(){
         var page = $(this).attr('href');
-        $('#content').load('cats/'+ page +'.php');
+        $('#content').load('content/'+ page +'.php');
         return false;
     });
     
 });
-

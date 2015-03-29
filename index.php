@@ -24,12 +24,14 @@
 
         <h3>CSS3 transitions</h3>
         <ul>
+            <li><a href="css-transitions.php">CSS Transitions</a></li>
             <li><a href="css-transitions-kd.php">CSS3 transitions: Example code from Kamianne</a></li>
             <li><a href="css-transitions2-kd.php">CSS3 transitions 2: Example code from Kamianne</a></li>
         </ul>
 
         <h3>CSS3 animations</h3>
         <ul>
+            <li><a href="css-animations.php">CSS3 animations</a></li>
             <li><a href='css-animations2-js.php'>CSS3 animations: Example code from Jordan</a></li>
             <li><a href='css-animations-kd.php'>CSS3 animations: Example code from Kamianne</a></li>
         </ul>
@@ -43,7 +45,8 @@
 
         <h3>AJAX interactions with remote services</h3>
         <ul>
-            <li><a href='ajax/index.php'>AJAX: Example code from Jordan</a></li>
+            <li><a href="ajax/">AJAX</a></li>
+            <li><a href='ajax-js/index.php'>AJAX: Example code from Jordan</a></li>
         </ul>
 
         <h3>JSON data serialization</h3>
