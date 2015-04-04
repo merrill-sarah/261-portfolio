@@ -1,0 +1,3 @@
+<?php 
+
+/*empty placeholder to clear out popup div*/

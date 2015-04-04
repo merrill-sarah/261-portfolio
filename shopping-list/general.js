@@ -1,5 +1,6 @@
 /*AJAX Pages*/
-$(document).ready(function(){
+/*Instead of deleting I commented this out in case the new code doesn't work*-Kami/
+/* $(document).ready(function(){
     
     $('.popup').load('empty.php');
     
@@ -13,23 +14,58 @@ $(document).ready(function(){
         return false;
     });
     
-});
+});*/
 
+
+function loadXMLDoc(url){
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {
+        xmlhttp = new XMLHttpRequest();
+    }
+    else
+    {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+        xmlhttp.onreadystatechange = function()
+    {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+        {
+            document.getElementById("popup").innerHTML = xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+            
+            
 /*add, remove, clear, show functions*/
 var items = [];
 
 function doSetItem() {
+    /*get info from user*/
     var name = document.forms.editor.name.value;
     var data = document.forms.editor.data.value;
+    /*if no value is entered, automatically assign it a value of one*/
     if (data === ""){
         data = "1";
     }
+    
+    /*create item object*/
     var item = new Object;
     item.name = name;
     item.data = data;
+    item.checkbox = "false";
+    item.star = "false";
+    
+    /*add item to array and save in local storage*/
     items.push(item);
     localStorage.setItem('items',JSON.stringify(items));
+    
+    /*update visible table*/
     doShowAll();
+    
+    /*clear inputs*/
     document.forms.editor.name.value= '';
     document.forms.editor.data.value= '';
 }
@@ -47,6 +83,17 @@ function doRemoveItem() {
     doShowAll();
 }
 
+function doRemoveChecked() {
+    items = JSON.parse(localStorage.items); 
+    for (var i=items.length-1; i>=0; i--) {
+        if (items[i].checkbox === "true"){
+            items.splice(i,1);
+        }
+    }
+    localStorage.setItem('items',JSON.stringify(items));
+    doShowAll();
+}
+
 function doClear() {
     items = JSON.parse(localStorage.items);
     items = [];
@@ -55,19 +102,100 @@ function doClear() {
 }
 
 function doShowAll() {
-    var pairs = "<tr><th>Name</th><th>Value</th></tr>\n";
+    var pairs = "<tr><th>Imp.</th><th>Name</th><th>Value</th><th>Check</th></tr>\n";
     var i=0;
     items = JSON.parse(localStorage.items);
     for (i=0; i<=items.length-1; i++) {
-        pairs += "<tr><td>"+items[i].name+"</td>\n<td>"+items[i].data+"</td></tr>\n";
+            /*load important or not important based on object star value*/
+            if (items[i].star === "false"){
+                pairs += "<tr><td><img src='http://dastrupdevelopment.com/imp1.png' id="+items[i].name+" onclick='changeImportance(this)' class='notimp' style='width:18px;height:18px'></td> ";
+            }
+            if (items[i].star === "true") {
+                pairs += "<tr><td><img src='http://dastrupdevelopment.com/imp2.png' id="+items[i].name+" onclick='changeImportance(this)' class='imp' style='width:18px;height:18px'></td> ";
+            }
+            /*add item name and value to table*/
+            pairs += "<td>"+items[i].name+"</td><td>"+items[i].data+"</td>";
+            
+            /*load checked or unchecked box based on object checkbox value*/
+            if (items[i].checkbox === "false"){
+                pairs += "<td><input type='checkbox' class='unchecked' onchange='changeCheck(this)' id="+items[i].name+"></td></tr>";
+            }
+            else {
+                pairs += "<td><input type='checkbox' class='checked' onchange='changeCheck(this)' id="+items[i].name+" checked><td></tr>";
+            }
     }
-    if (pairs === "<tr><th>Name</th><th>Value</th></tr>\n") {
-        pairs += "<tr><td><i>empty</i></td>\n<td><i>empty</i></td></tr>\n";
+    /*if items array is empty*/
+    if (pairs === "<tr><th>Importance</th><th>Name</th><th>Value</th><th>Check</th></tr>\n") {
+        pairs += "<tr><td></td><td><i>empty</i></td>\n<td><i>empty</i></td><td></td></tr>\n";
     }
     document.getElementById('items_table').innerHTML = pairs;
+      
 }
+function changeImportance(el){
+    items = JSON.parse(localStorage.items);
+    var itemName = $(el).attr('id');
+    var itemClass = $(el).attr('class');
+    for (i=0; i<=items.length-1; i++) {
+        /*change not important to important*/
+        if (itemName === items[i].name && itemClass === "notimp"){
+            items[i].star = "true";
+            el.setAttribute("class","imp");
+            el.setAttribute("src", "http://dastrupdevelopment.com/imp2.png");
+        }
+        /*change important to not important*/
+        else if (itemName === items[i].name && itemClass === "imp"){
+            items[i].star = "false"; 
+            el.setAttribute("class","notimp");
+            el.setAttribute("src", "http://dastrupdevelopment.com/imp1.png");
+        }
+    }
+    localStorage.setItem('items',JSON.stringify(items));
+}  
+function changeCheck(el){
+    items = JSON.parse(localStorage.items);
+    var itemName = $(el).attr('id');
+    var checkStatus = $(el).attr('class');
+    for (i=0; i<=items.length-1; i++) {
+        /*change not check to check*/
+        if (itemName === items[i].name && checkStatus === "unchecked"){
+            items[i].checkbox = "true";
+        }
+        /*change check to not check*/
+        else if (itemName === items[i].name && checkStatus === "checked"){
+            items[i].checkbox = "false"; 
+        }
+    }
+    localStorage.setItem('items',JSON.stringify(items));
+    doShowAll();
+}  
 
 /*options functions*/
+function sortImp(){
+    items = JSON.parse(localStorage.items);
+    for (var i=items.length-1; i>=0; i--) {
+        if (items[i].star === "false") {
+            items.splice(items.length-1, 0, items.splice(i, 1)[0]);
+        }
+    }
+    localStorage.setItem('items',JSON.stringify(items));
+    
+    /*update visible table*/
+    doShowAll();
+}
+function sortCheck(){
+    items = JSON.parse(localStorage.items);
+    for (i=0; i<=items.length-1; i++) {
+        if (items[i].checkbox === "false") {
+            items.splice(0, 0, items.splice(i, 1)[0]);
+        }
+    }
+    localStorage.setItem('items',JSON.stringify(items));
+    
+    /*update visible table*/
+    doShowAll();
+    
+}
+
 function changeColor(color){
                 var maincolor = "#";
                 var seccolor = "#";
@@ -112,8 +240,8 @@ function changeColor(color){
             };
             
 function loadColor(){
-    var maincolor = document.getElementById("result").innerHTML = localStorage.getItem("maincolor");
-    var seccolor = document.getElementById("result").innerHTML = localStorage.getItem("seccolor");
+    var maincolor = localStorage.getItem("maincolor");
+    var seccolor =  localStorage.getItem("seccolor");
     $( ".themecolor" ).css({"background-color":maincolor});
     $( ".button" ).css({"background-color":seccolor});
 }
