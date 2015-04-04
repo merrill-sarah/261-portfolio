@@ -1,44 +1,15 @@
 /*AJAX Pages*/
-/*Instead of deleting I commented this out in case the new code doesn't work*-Kami/
-/* $(document).ready(function(){
+$(document).ready(function(){
     
     $('.popup').load('empty.php');
     
-    $('nav ul li a').click(function(){
+    $('.button').click(function(){
         var page = $(this).attr('href');
         $('.popup').load(page + '.php');
         return false;
     });
-    $('a.close').click(function(){
-        $('.popup').load('empty.php');
-        return false;
-    });
-    
-});*/
+});
 
-
-function loadXMLDoc(url){
-    var xmlhttp;
-    if (window.XMLHttpRequest)
-    {
-        xmlhttp = new XMLHttpRequest();
-    }
-    else
-    {
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-        xmlhttp.onreadystatechange = function()
-    {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-        {
-            document.getElementById("popup").innerHTML = xmlhttp.responseText;
-        }
-    }
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-}
-            
-            
 /*add, remove, clear, show functions*/
 var items = [];
 
@@ -151,23 +122,6 @@ function changeImportance(el){
     }
     localStorage.setItem('items',JSON.stringify(items));
 }  
-function changeCheck(el){
-    items = JSON.parse(localStorage.items);
-    var itemName = $(el).attr('id');
-    var checkStatus = $(el).attr('class');
-    for (i=0; i<=items.length-1; i++) {
-        /*change not check to check*/
-        if (itemName === items[i].name && checkStatus === "unchecked"){
-            items[i].checkbox = "true";
-        }
-        /*change check to not check*/
-        else if (itemName === items[i].name && checkStatus === "checked"){
-            items[i].checkbox = "false"; 
-        }
-    }
-    localStorage.setItem('items',JSON.stringify(items));
-    doShowAll();
-}  
 
 /*options functions*/
 function sortImp(){
@@ -233,11 +187,17 @@ function changeColor(color){
                         seccolor += "232323";
                         break;
                 }
-                $( ".themecolor" ).css({"background-color":maincolor});
-                $( ".button" ).css({"background-color":seccolor});
+           
+                $(".themecolor").css({"background-color":maincolor,
+                                        transition:"background-color 1s",
+                                        webkitTransition:"background-color 1s"});
+                $( ".button" ).css({"background-color":seccolor,
+                                        transition:"background-color 1s",
+                                        webkitTransition:"background-color 1s"});
                 localStorage.setItem('maincolor', maincolor);
                 localStorage.setItem('seccolor', seccolor);
             };
+
             
 function loadColor(){
     var maincolor = localStorage.getItem("maincolor");
